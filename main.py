@@ -1,12 +1,13 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from decouple import config
 
 import os
 os.environ['HF_HOME'] = 'E:/huggingface'
 
 model_name = "meta-llama/Llama-2-7b-hf"  
 
-model = AutoModelForCausalLM.from_pretrained(model_name, token="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")
-tokenizer = AutoTokenizer.from_pretrained(model_name, token="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")
+model = AutoModelForCausalLM.from_pretrained(model_name, token=config("token"))
+tokenizer = AutoTokenizer.from_pretrained(model_name, token=config("token"))
 
 
 def generate_response(prompt):
